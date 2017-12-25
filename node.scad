@@ -5,7 +5,7 @@
 tol = 0.1;       // general tolerance for fitting parts
 eps = 0.00001;   // epsilon, used to resolve CGS issues
 cut_width = 0.1; // width of laser cut
-sm = 10;         // general smoothness factor
+sm = 30;         // general smoothness factor
 plate_t = 5;        // plate thickness for laser-cut parts
 plate_t_tol = 0.25; // plate thickness tolerance
 
