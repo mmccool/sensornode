@@ -5,8 +5,8 @@
 tol = 0.1;       // general tolerance for fitting parts
 eps = 0.00001;   // epsilon, used to resolve CGS issues
 cut_width = 0.1; // width of laser cut
-sm = 30;        // general smoothness factor
-plate_t = 5;       // plate thickness for laser-cut parts
+sm = 10;         // general smoothness factor
+plate_t = 5;        // plate thickness for laser-cut parts
 plate_t_tol = 0.25; // plate thickness tolerance
 
 // base plate dimensions
@@ -238,6 +238,9 @@ module base(
 foot_d = 2*base_r;
 foot_rr = 2.0/2; // locking holes
 foot_n = 18; // number of locking holes
+foot_d1 = 0.55;
+// foot_d2 = 0.8;
+foot_d2 = 0.65;
 module foot() {
   difference() {
     hull() {
@@ -245,13 +248,15 @@ module foot() {
       translate([0,foot_d]) circle(r=base_rr,$fn=base_sm);
     }
     circle(r=base_bolt_r,$fn=base_bolt_sm);
+/*
     for (i=[0:2:foot_n-1])
       rotate(i*360/foot_n)
-        translate([0.55*base_r,0])
+        translate([foot_d1*base_r,0])
           circle(r=foot_rr,$fn=base_bolt_sm);
+*/
     for (i=[1:2:foot_n-1])
       rotate(i*360/foot_n)
-        translate([0.8*base_r,0])
+        translate([foot_d2*base_r,0])
           circle(r=foot_rr,$fn=base_bolt_sm);
   }
 }
@@ -352,22 +357,26 @@ module front_plate() {
     translate(camera_offset)
       camera();
     // foot anchor holes (allow for vernier adjustments)
+/*
     for (i=[0:2:foot_n-1-2])
       rotate((i-foot_ph)*360/(foot_n-2))
-        translate([0.55*base_r,0])
+        translate([foot_d1*base_r,0])
           circle(r=foot_rr,$fn=base_bolt_sm);
+*/
     for (i=[1:2:foot_n-1-2])
       rotate((i-foot_ph)*360/(foot_n-2))
-        translate([0.8*base_r,0])
+        translate([foot_d2*base_r,0])
           circle(r=foot_rr,$fn=base_bolt_sm);
     translate([base_x,0]) {
+/*
       for (i=[0:2:foot_n-1-2])
         rotate((i+foot_ph)*360/(foot_n-2))
-          translate([0.55*base_r,0])
+          translate([foot_d1*base_r,0])
             circle(r=foot_rr,$fn=base_bolt_sm);
+*/
       for (i=[1:2:foot_n-1-2])
         rotate((i+foot_ph)*360/(foot_n-2))
-          translate([0.8*base_r,0])
+          translate([foot_d2*base_r,0])
             circle(r=foot_rr,$fn=base_bolt_sm);
     }
   }
