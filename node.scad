@@ -59,6 +59,7 @@ u_bolt_pos = [
 ];
 u_bolt_sm = sm;
 u_offset = [base_x/2 - 116/2+50,e_yo];
+u_offset_r = [base_x/2 - 116/2 + 115,e_yo];
 
 // DF Robot 25W 5V power convertor (needed for UP/RaspPi)
 p_bolt_r = 3.2/2;
@@ -393,6 +394,10 @@ module back_plate() {
     // UP Board/Rasp Pi
     translate(u_offset)
       bolt_holes(pos=u_bolt_pos,r=u_bolt_r,sm=u_bolt_sm);
+    // Rotated UP Board/Rasp Pi
+    translate(u_offset_r)
+      rotate(90)
+        bolt_holes(pos=u_bolt_pos,r=u_bolt_r,sm=u_bolt_sm);
     // DF Robot Power
     translate(p_offset)
       bolt_holes(pos=p_bolt_pos,r=p_bolt_r,sm=p_bolt_sm);
