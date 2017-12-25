@@ -113,7 +113,7 @@ module bolt_holes(
       circle(r=r,$fn=sm);
 }
 
-notch_r = 0.5;
+notch_r = 0.6;
 notch_w = plate_t + plate_t_tol;
 notch_d = 2;
 notch_sm = sm;
